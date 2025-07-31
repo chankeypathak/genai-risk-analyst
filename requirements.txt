@@ -1,0 +1,25 @@
+# Core dependencies
+fastapi
+streamlit
+uvicorn
+pandas
+numpy
+sqlalchemy
+requests
+PyPDF2
+openpyxl
+mlflow
+langchain
+faiss-cpu
+weaviate-client
+sentence-transformers
+transformers
+# For Airflow (optional bonus)
+apache-airflow
+# For PDF/Doc parsing
+pdfplumber
+# For Hugging Face LLMs
+accelerate
+torch
+# For environment variables
+python-dotenv
