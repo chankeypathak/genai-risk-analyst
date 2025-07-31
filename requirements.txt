@@ -1,4 +1,3 @@
-# Core dependencies
 fastapi
 streamlit
 uvicorn
@@ -14,12 +13,8 @@ faiss-cpu
 weaviate-client
 sentence-transformers
 transformers
-# For Airflow (optional bonus)
 apache-airflow
-# For PDF/Doc parsing
 pdfplumber
-# For Hugging Face LLMs
 accelerate
 torch
-# For environment variables
 python-dotenv

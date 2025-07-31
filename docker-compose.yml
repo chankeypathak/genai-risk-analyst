@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  streamlit:
+    build: .
+    command: streamlit run api/app.py
+    ports:
+      - "8501:8501"
+    volumes:
+      - .:/app
+    depends_on:
+      - mlflow
+    environment:
+      - PYTHONUNBUFFERED=1
+
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:v2.11.3
+    command: mlflow server --backend-store-uri sqlite:///mlflow_tracking/mlflow.db --default-artifact-root /mlflow_tracking --host 0.0.0.0 --port 5000
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./mlflow_tracking:/mlflow_tracking
+    environment:
+      - MLFLOW_TRACKING_URI=http://mlflow:5000
+
+  airflow:
+    image: apache/airflow:2.9.1-python3.10
+    environment:
+      - AIRFLOW__CORE__LOAD_EXAMPLES=False
+      - AIRFLOW__CORE__EXECUTOR=SequentialExecutor
+      - AIRFLOW__CORE__FERNET_KEY=airflow_fernet_key
+      - AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION=True
+      - AIRFLOW__CORE__DAGS_FOLDER=/app/airflow
+    volumes:
+      - .:/app
+      - ./airflow:/opt/airflow/dags
+    ports:
+      - "8080:8080"
+    command: bash -c "airflow db init && airflow webserver"
+    depends_on:
+      - streamlit
+      - mlflow
