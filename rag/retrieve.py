@@ -4,16 +4,29 @@ from sentence_transformers import SentenceTransformer
 
 MODEL_NAME = "all-MiniLM-L6-v2"
 
+
 class FaissRetriever:
     def __init__(self, faiss_path, chunks, keywords=None):
         self.index = faiss.read_index(faiss_path)
         self.model = SentenceTransformer(MODEL_NAME)
         self.chunks = chunks
-        self.keywords = keywords or ["litigation", "risk", "legal", "lawsuit", "proceeding", "regulatory", "compliance"]
+        self.keywords = keywords or [
+            "litigation",
+            "risk",
+            "legal",
+            "lawsuit",
+            "proceeding",
+            "regulatory",
+            "compliance",
+        ]
 
     def retrieve(self, query, top_k=5):
         # First, filter chunks by keywords for relevance
-        filtered = [(i, c) for i, c in enumerate(self.chunks) if any(kw in c.lower() for kw in self.keywords)]
+        filtered = [
+            (i, c)
+            for i, c in enumerate(self.chunks)
+            if any(kw in c.lower() for kw in self.keywords)
+        ]
         if filtered and len(filtered) >= top_k:
             idxs, filtered_chunks = zip(*filtered)
             q_emb = self.model.encode([query]).astype(np.float32)

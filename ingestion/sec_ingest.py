@@ -3,7 +3,6 @@ import os
 from pathlib import Path
 
 
-
 def download_latest_sec_10k(cik: str, company: str, save_dir: str = "data/sec"):
     """Download the latest available 10-K filing for a given CIK from SEC EDGAR."""
     os.makedirs(save_dir, exist_ok=True)
@@ -22,7 +21,9 @@ def download_latest_sec_10k(cik: str, company: str, save_dir: str = "data/sec"):
     primary_docs = filings.get("primaryDocument", [])
     descriptions = filings.get("primaryDocDescription", [""] * len(forms))
     # Find the latest 10-K
-    for i, (form, acc, date, doc, desc) in enumerate(zip(forms, accessions, filing_dates, primary_docs, descriptions)):
+    for i, (form, acc, date, doc, desc) in enumerate(
+        zip(forms, accessions, filing_dates, primary_docs, descriptions)
+    ):
         if form == "10-K":
             # Print if this filing mentions litigation risk in its description
             if "litigation" in desc.lower() or "legal" in desc.lower() or "risk" in desc.lower():
@@ -40,6 +41,7 @@ def download_latest_sec_10k(cik: str, company: str, save_dir: str = "data/sec"):
             break
     print(f"No 10-K found for {company}")
     return None
+
 
 if __name__ == "__main__":
     filings = [
