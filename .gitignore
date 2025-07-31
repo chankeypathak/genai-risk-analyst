@@ -1,0 +1,38 @@
+# Python virtual environments
+.venv/
+venv/
+ENV/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Jupyter and IPython
+.ipynb_checkpoints/
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Data and model files
+data/
+*.faiss
+*.index
+*.h5
+*.pt
+*.ckpt
+*.log
+*.mlruns/
+*mlruns/
+
+# Environment and config
+.env
+.env.*
+
+# Misc
+*.bak
+*.swp
+*.tmp
