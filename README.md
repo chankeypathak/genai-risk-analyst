@@ -15,12 +15,12 @@ This project is a GenAI-powered assistant that analyzes SEC 10-K filings and oth
 ## Architecture
 ```mermaid
 graph TD
-    A[SEC Filings/Docs] -->|Ingestion| B[Chunking & Embedding]
-    B -->|Vectors| C[FAISS Vector Store]
-    C -->|Retrieval| D[Relevant Chunks]
-    D -->|Prompt| E[LLM (Hugging Face)]
-    E -->|Answer| F[Streamlit UI]
-    E -->|Tracking| G[MLflow]
+    A[SEC Filings/Docs] -->|"Ingestion"| B[Chunking & Embedding]
+    B -->|"Vectors"| C[FAISS Vector Store]
+    C -->|"Retrieval"| D[Relevant Chunks]
+    D -->|"Prompt"| E["LLM (Hugging Face)"]
+    E -->|"Answer"| F[Streamlit UI]
+    E -->|"Tracking"| G[MLflow]
 ```
 
 ## Project Structure
