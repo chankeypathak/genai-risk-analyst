@@ -90,4 +90,3 @@ graph TD
 - Detect unusual spikes in transaction logs
 
 ---
-This project is for educational and demonstration purposes.
