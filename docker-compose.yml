@@ -28,7 +28,7 @@ services:
     environment:
       - AIRFLOW__CORE__LOAD_EXAMPLES=False
       - AIRFLOW__CORE__EXECUTOR=SequentialExecutor
-      - AIRFLOW__CORE__FERNET_KEY=airflow_fernet_key
+      - AIRFLOW__CORE__FERNET_KEY=qvE0pO6BESi13HwH_ioF_b0o1dt_5Zb0GYQhlrkgg30=
       - AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION=True
       - AIRFLOW__CORE__DAGS_FOLDER=/app/airflow
     volumes:

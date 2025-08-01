@@ -18,3 +18,4 @@ pdfplumber
 accelerate
 torch
 python-dotenv
+beautifulsoup4
